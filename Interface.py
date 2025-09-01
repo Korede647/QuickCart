@@ -37,140 +37,16 @@ import os
 
 
 # Admin class
-class Admin(User):
-    def add_product(self, products: List['Product'], name: str, price: float, stock: int, category: str) -> 'Product':
-        product = Product(name, price, stock, category)
-        products.append(product)
-        print(f"Added product: {name}")
-        return product
 
-    def restock_product(self, products: List['Product'], product_id: str, quantity: int) -> bool:
-        for product in products:
-            if product.product_id == product_id and quantity > 0:
-                product.update_stock(quantity)
-                print(f"Restocked {product.name} with {quantity} units")
-                return True
-        print("Invalid product ID or quantity")
-        return False
-
-    def view_all_orders(self, orders: List['Order']) -> None:
-        if not orders:
-            print("No orders found")
-            return
-        for order in orders:
-            print(order.get_details())
 
 # Customer class
-class Customer(User):
-    def __init__(self, username: str, password: str, email: str):
-        super().__init__(username, password, email)
-        self.cart = []
 
-    def browse_products(self, products: List['Product']) -> None:
-        if not products:
-            print("No products available")
-            return
-        for product in products:
-            print(product.get_details())
-
-    def add_to_cart(self, products: List['Product'], product_id: str, quantity: int) -> bool:
-        for product in products:
-            if product.product_id == product_id and product.stock >= quantity and quantity > 0:
-                self.cart.append({"product": product, "quantity": quantity})
-                product.update_stock(-quantity)
-                print(f"Added {quantity} x {product.name} to cart")
-                return True
-        print("Invalid product ID or insufficient stock")
-        return False
-
-    def place_order(self, orders: List['Order']) -> Optional['Order']:
-        if not self.cart:
-            print("Cart is empty")
-            return None
-        order = Order(self, self.cart)
-        orders.append(order)
-        self.cart = []  # Clear cart after order
-        print(f"Order placed: {order.order_id}")
-        return order
-
-    def view_order_history(self, orders: List['Order']) -> None:
-        user_orders = [order for order in orders if order.customer.user_id == self.user_id]
-        if not user_orders:
-            print("No orders found")
-            return
-        for order in user_orders:
-            print(order.get_details())
 
 # Rider class
-class Rider(User):
-    def __init__(self, username: str, password: str, email: str):
-        super().__init__(username, password, email)
-        self.status = RiderStatus.OFFLINE
 
-    def set_availability(self, status: RiderStatus) -> None:
-        self.status = status
-        print(f"Rider {self.username} status updated to {status.value}")
-
-    def view_pending_orders(self, orders: List['Order']) -> None:
-        pending_orders = [order for order in orders if order.status == OrderStatus.PENDING]
-        if not pending_orders:
-            print("No pending orders")
-            return
-        for order in pending_orders:
-            print(order.get_details())
-
-    def accept_order(self, orders: List['Order'], order_id: str) -> bool:
-        if self.status != RiderStatus.AVAILABLE:
-            print("Rider must be available to accept orders")
-            return False
-        for order in orders:
-            if order.order_id == order_id and order.status == OrderStatus.PENDING:
-                order.rider = self
-                order.update_status(OrderStatus.ACCEPTED)
-                self.status = RiderStatus.BUSY
-                print(f"Order {order_id} accepted by {self.username}")
-                return True
-        print("Invalid order ID or order not pending")
-        return False
-
-    def update_delivery_status(self, orders: List['Order'], order_id: str, status: OrderStatus) -> bool:
-        valid_transitions = {
-            OrderStatus.ACCEPTED: [OrderStatus.IN_PROGRESS, OrderStatus.CANCELLED],
-            OrderStatus.IN_PROGRESS: [OrderStatus.DELIVERED, OrderStatus.CANCELLED]
-        }
-        for order in orders:
-            if order.order_id == order_id and order.rider == self:
-                if status in valid_transitions.get(order.status, []):
-                    order.update_status(status)
-                    if status == OrderStatus.DELIVERED:
-                        self.status = RiderStatus.AVAILABLE
-                    print(f"Order {order_id} status updated to {status.value}")
-                    return True
-                print("Invalid status transition")
-                return False
-        print("Invalid order ID or not assigned to rider")
-        return False
 
 # Product class
-class Product:
-    def __init__(self, name: str, price: float, stock: int, category: str):
-        self.product_id = str(uuid.uuid4())
-        self.name = name
-        self.price = price
-        self.stock = stock
-        self.category = category
 
-    def update_stock(self, quantity: int) -> None:
-        self.stock += quantity
-
-    def get_details(self) -> Dict:
-        return {
-            "product_id": self.product_id,
-            "name": self.name,
-            "price": self.price,
-            "stock": self.stock,
-            "category": self.category
-        }
 
 # Order class
 class Order:
