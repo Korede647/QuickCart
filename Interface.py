@@ -49,51 +49,10 @@ import os
 
 
 # Order class
-class Order:
-    def __init__(self, customer: Customer, cart: List[Dict]):
-        self.order_id = str(uuid.uuid4())
-        self.customer = customer
-        self.rider = None
-        self.products = cart
-        self.status = OrderStatus.PENDING
-        self.order_time = datetime.now()
-        self.total_amount = self.calculate_total()
 
-    def calculate_total(self) -> float:
-        return sum(item["product"].price * item["quantity"] for item in self.products)
-
-    def update_status(self, status: OrderStatus) -> None:
-        self.status = status
-
-    def get_details(self) -> Dict:
-        return {
-            "order_id": self.order_id,
-            "customer": self.customer.username,
-            "rider": self.rider.username if self.rider else "Unassigned",
-            "products": [{"name": item["product"].name, "quantity": item["quantity"]} for item in self.products],
-            "status": self.status.value,
-            "total_amount": self.total_amount,
-            "order_time": self.order_time.strftime("%Y-%m-%d %H:%M:%S")
-        }
 
 # Persistence Manager
-class PersistenceManager:
-    @staticmethod
-    def save_data(products: List[Product], orders: List[Order], filename: str = "quickcart_data.json") -> None:
-        data = {
-            "products": [product.get_details() for product in products],
-            "orders": [order.get_details() for order in orders]
-        }
-        with open(filename, 'w') as f:
-            json.dump(data, f, indent=2)
 
-    @staticmethod
-    def load_products(filename: str = "quickcart_data.json") -> List[Product]:
-        if not os.path.exists(filename):
-            return []
-        with open(filename, 'r') as f:
-            data = json.load(f)
-            return [Product(p["name"], p["price"], p["stock"], p["category"]) for p in data.get("products", [])]
 
 # Main console application
 class QuickCartApp:

@@ -1,6 +1,7 @@
 from IQuickCart.User import User
-from IQUickCart.Product import Product
+from IQuickCart.Product import Product
 from typing import List, Optional
+from IQuickCart.Order import Order
 
 class Customer(User):
     def __init__(self, username: str, password: str, email: str):

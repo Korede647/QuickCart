@@ -1,4 +1,5 @@
 from IQuickCart.User import User
+from IQuickCart.Order import Order
 from ENUMS import OrderStatus
 from ENUMS import RiderStatus
 from typing import List 
