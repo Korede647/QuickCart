@@ -6,8 +6,3 @@ class OrderStatus(Enum):
     IN_PROGRESS = "in_progress"
     DELIVERED = "delivered"
     CANCELLED = "cancelled"
-
-class RiderStatus(Enum):
-    AVAILABLE = "available"
-    BUSY = "busy"
-    OFFLINE = "offline"

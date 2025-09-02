@@ -1,7 +1,7 @@
 from IQuickCart.User import User
 from IQuickCart.Order import Order
-from ENUMS import OrderStatus
-from ENUMS import RiderStatus
+from RiderStatus import OrderStatus
+from RiderStatus import RiderStatus
 from typing import List 
 
 class Rider(User):
@@ -13,6 +13,7 @@ class Rider(User):
         self.status = status
         print(f"Rider {self.username} status updated to {status.value}")
 
+
     def view_pending_orders(self, orders: List['Order']) -> None:
         pending_orders = [order for order in orders if order.status == OrderStatus.PENDING]
         if not pending_orders:
@@ -20,6 +21,7 @@ class Rider(User):
             return
         for order in pending_orders:
             print(order.get_details())
+
 
     def accept_order(self, orders: List['Order'], order_id: str) -> bool:
         if self.status != RiderStatus.AVAILABLE:
@@ -34,6 +36,7 @@ class Rider(User):
                 return True
         print("Invalid order ID or order not pending")
         return False
+    
 
     def update_delivery_status(self, orders: List['Order'], order_id: str, status: OrderStatus) -> bool:
         valid_transitions = {
