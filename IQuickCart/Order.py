@@ -1,6 +1,6 @@
 from Impl.Customer import Customer
 import uuid
-from RiderStatus import OrderStatus
+from .OrderStatus import OrderStatus
 from typing import List, Dict
 from datetime import datetime
 

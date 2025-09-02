@@ -1,5 +1,5 @@
-from IQuickCart.User import User
-from IQuickCart.Product import Product
+from .User import User
+from .Product import Product
 from IQuickCart.Order import Order
 from typing import List
 

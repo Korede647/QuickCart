@@ -1,7 +1,7 @@
-from IQuickCart.User import User
+from Impl.User import User
 from IQuickCart.Order import Order
-from RiderStatus import OrderStatus
 from RiderStatus import RiderStatus
+from OrderStatus import OrderStatus
 from typing import List 
 
 class Rider(User):

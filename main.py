@@ -1,9 +1,9 @@
 from Impl.Admin import Admin
 from Impl.Customer import Customer
 from Impl.Rider import Rider
-from Impl.Manager import PersistenceManager
+from Manager import PersistenceManager
 from RiderStatus import OrderStatus, RiderStatus
-from IQuickCart.User import User
+from Impl.User import User
 
 class QuickCartApp:
     def __init__(self):
