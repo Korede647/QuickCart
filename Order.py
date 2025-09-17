@@ -1,8 +1,7 @@
-
 import uuid
 from datetime import datetime
 from typing import List, Dict
-from .Impl.Customer import Customer
+from Customer import Customer
 from OrderStatus import OrderStatus
 
 class Order:

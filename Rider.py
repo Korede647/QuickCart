@@ -1,4 +1,4 @@
-from .User import User
+from User import User
 from Order import Order
 from RiderStatus import RiderStatus
 from OrderStatus import OrderStatus

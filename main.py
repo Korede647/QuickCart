@@ -1,7 +1,7 @@
 
-from Impl.Admin import Admin
-from Impl.Customer import Customer
-from Impl.Rider import Rider
+from Admin import Admin
+from Customer import Customer
+from Rider import Rider
 from Manager import PersistenceManager
 from OrderStatus import OrderStatus
 from RiderStatus import RiderStatus

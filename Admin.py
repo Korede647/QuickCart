@@ -1,5 +1,5 @@
-from .User import User
-from .Product import Product
+from User import User
+from Product import Product
 from Order import Order
 from typing import List
 

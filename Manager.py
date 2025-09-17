@@ -1,6 +1,6 @@
 from typing import List
 import json
-from Impl.Product import Product
+from Product import Product
 from Order import Order
 import os
 # import Order
