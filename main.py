@@ -1,9 +1,11 @@
+
 from Impl.Admin import Admin
 from Impl.Customer import Customer
 from Impl.Rider import Rider
 from Manager import PersistenceManager
-from RiderStatus import OrderStatus, RiderStatus
-from Impl.User import User
+from OrderStatus import OrderStatus
+from RiderStatus import RiderStatus
+from User import User
 
 class QuickCartApp:
     def __init__(self):
@@ -149,3 +151,7 @@ class QuickCartApp:
             return True
         print("Invalid credentials")
         return False
+
+if __name__ == "__main__":
+    app = QuickCartApp()
+    app.run()

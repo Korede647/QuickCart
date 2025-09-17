@@ -1,14 +1,15 @@
-from Impl.Customer import Customer
+
 import uuid
-from .OrderStatus import OrderStatus
-from typing import List, Dict
 from datetime import datetime
+from typing import List, Dict
+from Customer import Customer
+from .OrderStatus import OrderStatus
 
 class Order:
-    def __init__(self, customer: Customer, cart: List[Dict]):
+    def __init__(self, customer: 'Customer', cart: List[Dict]):
         self.order_id = str(uuid.uuid4())
         self.customer = customer
-        self.rider = None
+        self.rider = None  # Rider assigned later
         self.products = cart
         self.status = OrderStatus.PENDING
         self.order_time = datetime.now()
