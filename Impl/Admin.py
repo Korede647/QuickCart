@@ -1,6 +1,6 @@
 from .User import User
 from .Product import Product
-from IQuickCart.Order import Order
+from Order import Order
 from typing import List
 
 class Admin(User):

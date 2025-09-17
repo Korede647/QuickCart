@@ -2,8 +2,8 @@
 import uuid
 from datetime import datetime
 from typing import List, Dict
-from Customer import Customer
-from .OrderStatus import OrderStatus
+from .Impl.Customer import Customer
+from OrderStatus import OrderStatus
 
 class Order:
     def __init__(self, customer: 'Customer', cart: List[Dict]):
