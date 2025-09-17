@@ -1,6 +1,6 @@
 
 from Admin import Admin
-from Customer import Customer
+from models import Customer
 from Rider import Rider
 from Manager import PersistenceManager
 from OrderStatus import OrderStatus
@@ -12,17 +12,18 @@ class QuickCartApp:
         self.products = PersistenceManager.load_products()
         self.orders = []
         self.users = {
-            "admin": Admin("admin", "admin123", "admin@quickcart.com"),
-            "customer1": Customer("customer1", "pass123", "customer1@quickcart.com"),
-            "rider1": Rider("rider1", "pass123", "rider1@quickcart.com")
+            "admin": Admin("adminKorede", "admin123", "admin@quickcart.com"),
+            "customer1": Customer("customer1", "customer123", "customer1@quickcart.com"),
+            "rider1": Rider("rider1", "rider123", "rider1@quickcart.com")
         }
 
     def run(self):
         while True:
-            print("\n=== QuickCart ===")
-            print("1. Admin Login")
-            print("2. Customer Login")
-            print("3. Rider Login")
+            print("\n================================================ QuickCart =========================================================")
+            print("Welcome to QuickCart!\nPlease Login to Continue")
+            print("1. Admin?")
+            print("2. Customer?")
+            print("3. Rider?")
             print("4. Exit")
             choice = input("Select option: ")
 

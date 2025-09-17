@@ -1,5 +1,5 @@
 from User import User
-from Order import Order
+from models import Order
 from RiderStatus import RiderStatus
 from OrderStatus import OrderStatus
 from typing import List 
