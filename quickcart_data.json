@@ -1,4 +1,12 @@
 {
-  "products": [],
+  "products": [
+    {
+      "product_id": "2a5a0ec9-240c-46a8-a45f-2254c4e7d919",
+      "name": "Eggs",
+      "price": 300.0,
+      "stock": 60,
+      "category": "Food"
+    }
+  ],
   "orders": []
 }
